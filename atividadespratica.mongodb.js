@@ -1,0 +1,90 @@
+// show databases
+
+use ("contatos")
+
+db.contatos.insertOne({
+    nome: "Julia Santos",
+    telefone: "999635544",
+    email: "Julia.Santos@gmail.com",
+    cidade: "Capão Redondo",
+    dataCadastro: new Date("2025-01-17")
+
+})
+
+use("contatos")
+db.contatos.insertMany([ 
+    {
+    nome: "Ana Silva",
+    telefone: "999912345",
+    email: "ana.silva@gmail.com",
+    cidade: "São Paulo",
+    dataCadastro: new Date("2023-02-10")
+    },
+    {
+    nome: "Bruno Costa",
+    telefone: "41987654321",
+    email: "bruno.costa@hotmail.com",
+    cidade: "Curitiba",
+    dataCadastro: new Date("2022-11-05")
+    },
+    {
+    nome: "Amanda Souza",
+    telefone: "988776655",
+    email: "amanda.souza@gmail.com",
+    cidade: "Rio de Janeiro",
+    dataCadastro: new Date("2024-01-15")
+    },
+    {
+    nome: "Carlos Pereira",
+    telefone: "41911223344",
+    email: "carlos@empresa.com",
+    cidade: "Curitiba",
+    dataCadastro: new Date("2023-06-20")
+    },
+    {
+    nome: "Daniel Rocha",
+    telefone: "977665544",
+    email: "daniel.rocha@gmail.com",
+    cidade: "São Paulo",
+    dataCadastro: new Date("2021-09-30")
+    }
+]);
+
+use('contatos');
+db.contatos.find({ nome: /^A/i });
+
+use('contatos');
+db.contatos.find({ telefone: /^9/ });
+
+use('contatos');
+db.contatos.find({ email: /gmail.com/ });
+
+use('contatos');
+db.contatos.find({ cidade: /São Paulo/ });
+
+use('contatos');
+db.contatos.find({ dataCadastro: { $gt: new Date("2023-01-01") } });
+
+use('contatos');
+db.contatos.updateOne(
+    { nome: "Julia Santos" },
+    { $set: { email: "juliagabriel@gmail.com", telefone: "41999635544" } }
+);
+
+use('contatos');
+db.contatos.updateOne(
+    { nome: "Daniel Rocha" },
+    { $set: { cidade: "Parati" } }
+);
+
+use('contatos');
+db.contatos.updateMany(
+    { telefone: /^41/ },
+    { $set: { cidade: "Curitiba" } }
+);
+
+use('contatos');
+db.contatos.deleteOne({ nome: "Ana Silva" });
+
+use('contatos');
+db.contatos.deleteMany({ cidade: "Parati" });
