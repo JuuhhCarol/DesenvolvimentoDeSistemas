@@ -1,0 +1,17 @@
+import express from 'express';
+
+const app = express();
+const port = 8080;
+
+app.listen(port, () => console.log(`Acesse: http://localhost:${port}/`));
+
+app.get('/getTeste', (req, res) => {
+res.send("API funcionando!");
+    });
+const pessoa = {
+    name: 'Júlia',
+    lastname :'Santos'
+}
+app.get('/object',(req,res)=>{
+    res.send({pessoa:pessoa});
+});
