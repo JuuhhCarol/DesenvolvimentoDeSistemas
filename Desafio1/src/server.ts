@@ -1,15 +1,16 @@
 import express from 'express';
-import routes from './routes/routes.js';
+import initRoutes from './routes/routes.js';
+import connectDB from './database/database.js';
 
 const app = express();
 const port = 8080;
 
-routes(app)
+connectDB();
+initRoutes(app);
 
-app.get('/', (req, res) => {
-    res.status(200).send({ response: 'api funcionando!' })
-})
+
+connectDB();
 
 app.listen(port, () =>
-    console.log(`Acesse: http://localhost:${port}/`)
+     console.log(`Acesse: http://localhost:${port}/`)
 );
